@@ -1,26 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import logger from 'redux-logger';
 
-function App() {
+import { Reducer } from './Components/reducers/reducer'
+import { fetchPopular } from './Components/actions/action';
+
+function App(props) {
+  useEffect(()=> {
+    fetchPopular();
+  },[])
+
+  const {
+    fetchPopular
+  } = props
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
     </div>
   );
 }
 
-export default App;
+export const store = createStore(Reducer, applyMiddleware(thunk, logger));
+
+const mapStateToProps = (state) => {
+  return {
+    popular: state.popular,
+    error: state.error
+  }
+}
+export default connect(mapStateToProps,{
+  fetchPopular,
+})(App);
