@@ -1,11 +1,13 @@
-import React from 'react';
-import Axios from 'axios';
+import React, {useEffect} from 'react';
+import { fetchPopular } from '../actions/action';
 
-function LatestPopular() {
+function LatestPopular(props){
+  console.log('this is props', props.data)
   return (
     <div>
+      <h1>{props.data.title}</h1>
     </div>
   );
 }
 
-export default App;
+export default LatestPopular;

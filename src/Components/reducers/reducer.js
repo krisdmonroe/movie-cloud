@@ -5,7 +5,7 @@ import {
   } from '../actions/action';
   
 export const initialState = {
-    popular: null,
+    popular: [],
     error: ''
   };
   

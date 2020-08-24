@@ -4,8 +4,10 @@ import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 
+import latestPopular from './Components/LatestPopular/LatestPopular'
 import { Reducer } from './Components/reducers/reducer'
 import { fetchPopular } from './Components/actions/action';
+import LatestPopularList from './Components/LatestPopular/LatestPopularList';
 
 function App(props) {
   useEffect(()=> {
@@ -18,6 +20,7 @@ function App(props) {
 
   return (
     <div className="App">
+    <LatestPopularList />
     </div>
   );
 }
