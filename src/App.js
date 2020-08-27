@@ -8,6 +8,7 @@ import latestPopular from './Components/LatestPopular/LatestPopular'
 import { Reducer } from './Components/reducers/reducer'
 import { fetchPopular } from './Components/actions/action';
 import LatestPopularList from './Components/LatestPopular/LatestPopularList';
+import Navigation from './Components/navigation';
 
 function App(props) {
   useEffect(()=> {
@@ -19,9 +20,12 @@ function App(props) {
   } = props
 
   return (
-    <div className="App">
-    <LatestPopularList />
-    </div>
+    <>
+      <Navigation/>
+      <div className="App">
+      <LatestPopularList />
+      </div>
+    </>
   );
 }
 

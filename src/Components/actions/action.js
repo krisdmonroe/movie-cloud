@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+// Hiding Api Key
 const API_KEY = process.env.REACT_APP_MOVIE_API_KEY;
 export const FETCHING_POPULAR_START = 'FETCHING_POPULAR_START';
 export const FETCHING_POPULAR_SUCCESS = 'FETCHING_FACT_SUCCESS';
