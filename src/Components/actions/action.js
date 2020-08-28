@@ -5,6 +5,7 @@ const API_KEY = process.env.REACT_APP_MOVIE_API_KEY;
 export const FETCHING_POPULAR_START = 'FETCHING_POPULAR_START';
 export const FETCHING_POPULAR_SUCCESS = 'FETCHING_FACT_SUCCESS';
 export const FETCHING_POPULAR_FAILURE = 'FETCHING_FACT_FAILURE';
+export const SET_CURRENT_INDEX = 'SET_CURRENT_INDEX';
 
 export const fetchPopular = () => dispatch => {
     dispatch({ type: FETCHING_POPULAR_START });
@@ -18,3 +19,7 @@ export const fetchPopular = () => dispatch => {
         dispatch({ type: FETCHING_POPULAR_FAILURE, payload: err.response})
     })
 }
+
+// export const setActiveIndex = (activeIndex) => dispatch =>{
+//     dispatch({ type: SET_CURRENT_INDEX, payload: activeIndex})
+// }

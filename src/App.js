@@ -9,6 +9,7 @@ import { Reducer } from './Components/reducers/reducer'
 import { fetchPopular } from './Components/actions/action';
 import LatestPopularList from './Components/LatestPopular/LatestPopularList';
 import Navigation from './Components/navigation';
+import Carousel from './Components/Carousel/carousel';
 
 function App(props) {
   useEffect(()=> {
@@ -23,7 +24,7 @@ function App(props) {
     <>
       <Navigation/>
       <div className="App">
-      <LatestPopularList />
+      <Carousel />
       </div>
     </>
   );
