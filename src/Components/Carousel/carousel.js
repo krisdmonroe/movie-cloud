@@ -8,38 +8,35 @@ import '../css/main.css'
 
 function Carousel(props){
 console.log('this is carousel props', props)
-const [ index, setIndex ] = useState(props.activeIndex)
-const [ length, setLength ] = useState(props.length)
-const goToPrevSlide=()=>{
-    let index = index;
-    let length = length;
+
+const goToPrevSlide = () =>{
+    let index = props.activeIndex;
+    let length = props.length;
     if(index < 1) {
         index = length -1;
         }
         else {
             index--;
         }
-    setIndex(index)
 }
 const goToNextSlide = () => {
-    let index = index;
-    let length = length
+    let index = props.activeIndex;
+    let length = props.length;
     if(index === length -1){
         index = 0
     }
     else {
         index++;
     }
-    setIndex(index)
 }
     return (
         <div className='slider'>
             <div className='sliderItems'>
-            <LeftArrow goToPrevSlide={goToPrevSlide}/>
+            <LeftArrow goToPrevSlide={()=>goToPrevSlide}/>
             <div className='slider-text'>
             <Slide />
             </div>
-            <RightArrow goToNextSlide={goToNextSlide}/>
+            <RightArrow goToNextSlide={()=>goToNextSlide}/>
             </div>
         </div>
     )
