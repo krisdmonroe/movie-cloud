@@ -3,8 +3,13 @@ import axios from 'axios';
 // Hiding Api Key
 const API_KEY = process.env.REACT_APP_MOVIE_API_KEY;
 export const FETCHING_POPULAR_START = 'FETCHING_POPULAR_START';
-export const FETCHING_POPULAR_SUCCESS = 'FETCHING_FACT_SUCCESS';
-export const FETCHING_POPULAR_FAILURE = 'FETCHING_FACT_FAILURE';
+export const FETCHING_POPULAR_SUCCESS = 'FETCHING_POPULAR_SUCCESS';
+export const FETCHING_POPULAR_FAILURE = 'FETCHING_POPULAR_FAILURE';
+
+export const FETCHING_GENRES_START = 'FETCHING_GENRES_START'
+export const FETCHING_GENRES_SUCCESS = 'FETCHING_GENRES_SUCCESS'
+export const FETCHING_GENRES_FAILURE = 'FETCHING_GENRES_FAILURE'
+
 export const SET_CURRENT_INDEX = 'SET_CURRENT_INDEX';
 
 export const fetchPopular = () => dispatch => {
@@ -20,6 +25,15 @@ export const fetchPopular = () => dispatch => {
     })
 }
 
-// export const setActiveIndex = (activeIndex) => dispatch =>{
-//     dispatch({ type: SET_CURRENT_INDEX, payload: activeIndex})
-// }
+export const fetchGenres = () => dispatch => {
+    dispatch({ type: FETCHING_GENRES_START })
+    axios
+    .get(`https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}&language=en-US`)
+    .then(res => {
+        console.log('this is res genres', res)
+        dispatch({ type: FETCHING_GENRES_SUCCESS, payload: res.data.genres})
+    })
+    .catch(err => {
+        dispatch({ type: FETCHING_GENRES_FAILURE, payload: err.response })
+    })
+}

@@ -6,7 +6,7 @@ import logger from 'redux-logger';
 
 import latestPopular from './Components/LatestPopular/LatestPopular'
 import { Reducer } from './Components/reducers/reducer'
-import { fetchPopular } from './Components/actions/action';
+import { fetchPopular, fetchGenres } from './Components/actions/action';
 import LatestPopularList from './Components/LatestPopular/LatestPopularList';
 import Navigation from './Components/navigation';
 import Carousel from './Components/Carousel/carousel';
@@ -14,10 +14,12 @@ import Carousel from './Components/Carousel/carousel';
 function App(props) {
   useEffect(()=> {
     fetchPopular();
+    fetchGenres();
   },[])
 
   const {
-    fetchPopular
+    fetchPopular,
+    fetchGenres
   } = props
 
   return (
@@ -40,4 +42,5 @@ const mapStateToProps = (state) => {
 }
 export default connect(mapStateToProps,{
   fetchPopular,
+  fetchGenres,
 })(App);

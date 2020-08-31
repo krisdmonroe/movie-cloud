@@ -1,0 +1,46 @@
+.slide {
+    display: none;
+    max-width: 900px;
+    text-align: center;
+  }
+
+.inactive {
+    display: none;
+}
+.active {
+    display: block;
+}
+  
+.slider {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+}
+.sliderItems {
+    border: 2px solid blue;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+    width: 100%;
+}
+.image {
+    width: 100%;
+    height: 95vh;
+}
+h1 span:before{
+    color: white;
+    opacity: 0.8;
+    content: 'Latest';
+}
+ h1 span { 
+    color: white;
+    border: 2px solid red;
+    position: absolute;
+    bottom: 3%;
+    left: 5%;
+    font-size: 18px;
+ }
