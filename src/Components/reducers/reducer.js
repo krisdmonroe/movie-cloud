@@ -2,9 +2,12 @@ import {
     FETCHING_POPULAR_START,
     FETCHING_POPULAR_SUCCESS,
     FETCHING_POPULAR_FAILURE,
-    SET_CURRENT_INDEX,
+    INCREASE_CURRENT_INDEX,
+    DECREASE_CURRENT_INDEX,
+    RESET_INDEX,
     FETCHING_GENRES_START,
     FETCHING_GENRES_SUCCESS,
+    END_OF_INDEX,
   } from '../actions/action';
   
 export const initialState = {
@@ -31,11 +34,27 @@ export const Reducer = (state = initialState, action) => {
                 ...state,
                 genres: action.payload
             }
-        // case SET_CURRENT_INDEX:
-        //     return {
-        //         ...state,
-        //         activeIndex: action.payload
-        //     }
+        case INCREASE_CURRENT_INDEX:
+            return {
+                ...state,
+                activeIndex: state.activeIndex + 1
+            }
+        case DECREASE_CURRENT_INDEX:
+            return {
+                ...state,
+                activeIndex: state.activeIndex -1
+            }
+        case RESET_INDEX:
+            return {
+                ...state,
+                activeIndex: 0
+            }
+        case END_OF_INDEX: {
+            return {
+                ...state,
+                activeIndex: state.popular.length -1
+            }
+        }
         default:
             return state;
     }

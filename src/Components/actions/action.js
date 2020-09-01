@@ -6,11 +6,14 @@ export const FETCHING_POPULAR_START = 'FETCHING_POPULAR_START';
 export const FETCHING_POPULAR_SUCCESS = 'FETCHING_POPULAR_SUCCESS';
 export const FETCHING_POPULAR_FAILURE = 'FETCHING_POPULAR_FAILURE';
 
-export const FETCHING_GENRES_START = 'FETCHING_GENRES_START'
-export const FETCHING_GENRES_SUCCESS = 'FETCHING_GENRES_SUCCESS'
-export const FETCHING_GENRES_FAILURE = 'FETCHING_GENRES_FAILURE'
+export const FETCHING_GENRES_START = 'FETCHING_GENRES_START';
+export const FETCHING_GENRES_SUCCESS = 'FETCHING_GENRES_SUCCESS';
+export const FETCHING_GENRES_FAILURE = 'FETCHING_GENRES_FAILURE';
 
-export const SET_CURRENT_INDEX = 'SET_CURRENT_INDEX';
+export const INCREASE_CURRENT_INDEX = 'INCREASE_CURRENT_INDEX';
+export const DECREASE_CURRENT_INDEX = 'DECREASE_CURRENT_INDEX';
+export const RESET_INDEX = 'RESET_INDEX'
+export const END_OF_INDEX = 'END_OF_INDEX'
 
 export const fetchPopular = () => dispatch => {
     dispatch({ type: FETCHING_POPULAR_START });
@@ -36,4 +39,20 @@ export const fetchGenres = () => dispatch => {
     .catch(err => {
         dispatch({ type: FETCHING_GENRES_FAILURE, payload: err.response })
     })
+}
+
+export const increaseIndex = newIndex => {
+    return { type: INCREASE_CURRENT_INDEX, payload: newIndex };
+}
+
+export const decreaseIndex = newIndex => {
+    return { type: DECREASE_CURRENT_INDEX, payload: newIndex }
+}
+
+export const resetIndex = newIndex => {
+    return { type: RESET_INDEX, payload: newIndex }
+}
+
+export const endOfIndex = newIndex => {
+    return { type: END_OF_INDEX, payload: newIndex }
 }

@@ -5,47 +5,58 @@ import LeftArrow from './leftArrow'
 import RightArrow from './rightArrow'
 import Slide from './slide'
 import '../css/main.css'
+import { increaseIndex, decreaseIndex, resetIndex, endOfIndex } from '../actions/action';
 
 function Carousel(props){
 console.log('this is carousel props', props)
 
-const goToPrevSlide = () =>{
+let goToPrevSlide = () =>{
     let index = props.activeIndex;
     let length = props.length;
     if(index < 1) {
-        index = length -1;
-        }
-        else {
-            index--;
-        }
-}
-const goToNextSlide = () => {
-    let index = props.activeIndex;
-    let length = props.length;
-    if(index === length -1){
-        index = 0
+        props.end()
     }
     else {
-        index++;
+        props.decrement()
+    }
+}
+let goToNextSlide = () => {
+    let index = props.activeIndex;
+    let length = props.length;
+    if(index+1 === length){
+        props.reset()
+    }
+    else {
+        props.increment()
     }
 }
     return (
         <div className='slider'>
             <div className='sliderItems'>
-            <LeftArrow goToPrevSlide={()=>goToPrevSlide}/>
+            <LeftArrow goToPrevSlide={goToPrevSlide}/>
             <div className='slider-text'>
             <Slide />
             </div>
-            <RightArrow goToNextSlide={()=>goToNextSlide}/>
+            <RightArrow goToNextSlide={goToNextSlide}/>
             </div>
         </div>
     )
 }
 
-const MapStateToProps = (state) => {
+const mapStateToProps = (state) => {
+    console.log('this is state in cara', state)
     return {
-        activeIndex: 0,
+        activeIndex: state.activeIndex,
         length: state.popular.length
     }
 }
-export default connect(MapStateToProps, {})(Carousel);
+const mapDispatchToProps = (dispatch) => {
+    return {
+       increment: () => dispatch(increaseIndex()),
+       decrement: () => dispatch(decreaseIndex()),
+       reset: () => dispatch(resetIndex()),
+       end: () => dispatch(endOfIndex()),
+    };
+ };
+
+export default connect(mapStateToProps, mapDispatchToProps)(Carousel);
